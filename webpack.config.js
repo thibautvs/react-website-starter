@@ -19,5 +19,8 @@ module.exports = {
   output: {
     path: './dist',
     filename: 'app.js'
+  },
+  devServer: {
+    port: 8000
   }
 }
