@@ -1,7 +1,10 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: {
     html: './app/index.html',
-    javascript: './app/app.js'
+    javascript: './app/app.js',
+    vendor: ['react', 'react-dom']
   },
   module: {
     loaders: [
@@ -20,6 +23,9 @@ module.exports = {
       }
     ],
   },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+  ],
   output: {
     path: './dist',
     filename: 'app.js'
