@@ -1,0 +1,10 @@
+{
+  "name": "react-website-starter",
+  "version": "1.0.0",
+  "description": "Isomorphic React website starter",
+  "author": "Thibaut Van Spaandonck",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  }
+}
