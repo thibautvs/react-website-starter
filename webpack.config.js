@@ -10,6 +10,10 @@ module.exports = {
         loader: 'file?name=index.html',
       },
       {
+        test: require.resolve('react'),
+        loader: 'expose?React'
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
