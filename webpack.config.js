@@ -1,7 +1,14 @@
 module.exports = {
-  entry: './app/app.js',
+  entry: {
+    html: './app/index.html',
+    javascript: './app/app.js'
+  },
   module: {
     loaders: [
+      {
+        test: /\.html$/,
+        loader: 'file?name=index.html',
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
