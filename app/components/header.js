@@ -1,9 +1,10 @@
 import React from 'react';
+import './header.css';
 
 export default React.createClass({
-  render: function() {
+  render() {
     return (
-      <h1>Hello, {this.props.name} !</h1>
+      <header>{this.props.title}</header>
     );
-  },
+  }
 });

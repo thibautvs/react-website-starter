@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Greeting from './greeting';
+import Header from './components/header';
+import './app.css';
 
 ReactDOM.render(
-  <Greeting name="World"/>,
-  document.getElementById('container')
+  <Header title='React Website Starter' />,
+  document.querySelector('#main')
 );

@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -8,27 +9,19 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.html$/,
-        loader: 'file?name=index.html',
-      },
-      {
-        test: require.resolve('react'),
-        loader: 'expose?React'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
-      }
+      { test: /\.html$/, loader: 'file?name=index.html' },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
+      { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'] },
+      { test: require.resolve('react'), loader: 'expose?React' }
     ],
   },
   plugins: [
+    new ExtractTextPlugin('react-website-starter.css'),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
   output: {
     path: './dist',
-    filename: 'app.js'
+    filename: 'react-website-starter.js'
   },
   devServer: {
     port: 8000
