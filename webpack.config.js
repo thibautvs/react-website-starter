@@ -10,7 +10,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.html$/, loader: 'file?name=index.html' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass') },
       { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'] },
       { test: require.resolve('react'), loader: 'expose?React' }
     ],
