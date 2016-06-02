@@ -13,6 +13,7 @@ module.exports = {
       { test: /\.html$/, loader: 'file?name=index.html' },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass!postcss') },
       { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'] },
+      { test: /\.(jpg|png|gif|svg)$/, loader: 'file?name=img/[name].[ext]' },
       { test: require.resolve('react'), loader: 'expose?React' }
     ],
   },
