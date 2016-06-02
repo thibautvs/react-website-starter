@@ -1,7 +1,7 @@
 import './theme/app.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './components/header';
+import Header from './components/Header';
 
 ReactDOM.render(
   <Header title='React Website Starter' />,
