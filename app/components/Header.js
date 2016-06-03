@@ -1,5 +1,5 @@
 import React from 'react';
-import imgLogo from '../img/logo.svg';
+import imgLogo from '../assets/images/logo.svg';
 import './Header.scss';
 
 export default React.createClass({
