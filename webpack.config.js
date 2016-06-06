@@ -24,7 +24,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
     new ExtractTextPlugin('react-website-starter.css'),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    production ? new webpack.optimize.UglifyJsPlugin() : function() {}
   ],
   resolveLoader: {
     root: path.resolve(__dirname, 'node_modules')
