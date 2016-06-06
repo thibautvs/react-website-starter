@@ -15,7 +15,7 @@ module.exports = {
     loaders: [
       { test: /\.html$/, loader: 'file?name=index.html' },
       { test: /\.scss$/, loader: production ? ExtractTextPlugin.extract('style', 'css!sass!postcss') : 'style!css!sass!postcss' },
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react'] },
+      { test: /\.js$/, exclude: /node_modules/, loader: (production ? '' : 'react-hot!') + 'babel?presets[]=es2015&presets[]=react' },
       { test: /assets/, loader: 'file?name=[path][name].[ext]' },
       { test: require.resolve('react'), loader: 'expose?React' }
     ],
