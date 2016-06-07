@@ -9,9 +9,9 @@ var isDev = !isProd;
 
 module.exports = {
   context: path.resolve(__dirname, 'app'),
-  entry: {
-    javascript: './app.js',
-    vendor: ['react', 'react-dom']
+  entry: new function() {
+    this.javascript = './app.js';
+    if (isProd) this.vendor = ['react', 'react-dom'];
   },
   module: {
     loaders: [
@@ -24,9 +24,9 @@ module.exports = {
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
     new HtmlWebpackPlugin({ template: './index.tmpl.html' }),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor' + (isProd ? '-[hash]' : '') + '.js'),
     new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
     isProd ? new ExtractTextPlugin(appName + '-[hash].css') : function() {},
+    isProd ? new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js') : function() {},
     isProd ? new webpack.optimize.UglifyJsPlugin() : function() {},
     isProd ? new webpack.optimize.OccurrenceOrderPlugin() : function() {}
   ],
