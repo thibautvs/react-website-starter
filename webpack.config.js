@@ -3,6 +3,7 @@ var path = require('path');
 var autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var appName = 'react-website-starter';
 var isProd = process.env.NODE_ENV === 'production';
 var isDev = !isProd;
 
@@ -24,16 +25,16 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: './index.tmpl.html' }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor' + (isProd ? '-[hash]' : '') + '.js'),
-    isProd ? new ExtractTextPlugin('react-website-starter' + (isProd ? '-[hash]' : '') + '.css') : function() {},
-    isProd ? new webpack.optimize.UglifyJsPlugin() : function() {},
-    new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } })
+    new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
+    isProd ? new ExtractTextPlugin(appName + '-[hash].css') : function() {},
+    isProd ? new webpack.optimize.UglifyJsPlugin() : function() {}
   ],
   resolveLoader: {
     root: path.resolve(__dirname, 'node_modules')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'react-website-starter' + (isProd ? '-[hash]' : '') + '.js'
+    filename: appName + (isProd ? '-[hash]' : '') + '.js'
   },
   devTool: 'eval-source-map',
   devServer: {
