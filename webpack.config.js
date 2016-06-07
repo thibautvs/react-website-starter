@@ -23,7 +23,7 @@ module.exports = {
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
   plugins: [
-    new HtmlWebpackPlugin({ template: './index.tmpl.html' }),
+    new HtmlWebpackPlugin({ template: './index.tmpl.html', favicon: './favicon.ico' }),
     new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
     isProd ? new ExtractTextPlugin(appName + '-[hash].css') : function() {},
     isProd ? new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js') : function() {},
