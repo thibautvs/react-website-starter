@@ -10,13 +10,13 @@ var isDev = !isProd;
 module.exports = {
   context: path.resolve(__dirname, 'app'),
   entry: new function() {
-    this.javascript = './app.js';
+    this.javascript = './app.jsx';
     if (isProd) this.vendor = ['react', 'react-dom'];
   },
   module: {
     loaders: [
       { test: /\.scss$/, loader: isDev ? 'style!css?sourceMap!sass?sourceMap!postcss' : ExtractTextPlugin.extract('style', 'css!sass!postcss') },
-      { test: /\.js$/, exclude: /node_modules/, loader: (isDev ? 'react-hot!' : '') + 'babel?presets[]=es2015&presets[]=react' },
+      { test: /\.(jsx?)$/, exclude: /node_modules/, loader: (isDev ? 'react-hot!' : '') + 'babel?presets[]=es2015&presets[]=react' },
       { test: /assets/, loader: 'file?name=[path][name].[ext]' },
       { test: require.resolve('react'), loader: 'expose?React' }
     ],
@@ -30,9 +30,8 @@ module.exports = {
     isProd ? new webpack.optimize.UglifyJsPlugin() : function() {},
     isProd ? new webpack.optimize.OccurrenceOrderPlugin() : function() {}
   ],
-  resolveLoader: {
-    root: path.resolve(__dirname, 'node_modules')
-  },
+  resolve: { extensions: ['', '.js', '.jsx'] },
+  resolveLoader: { root: path.resolve(__dirname, 'node_modules') },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: appName + (isProd ? '-[hash]' : '') + '.js'
