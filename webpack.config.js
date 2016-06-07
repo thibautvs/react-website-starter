@@ -27,7 +27,8 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor' + (isProd ? '-[hash]' : '') + '.js'),
     new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } }),
     isProd ? new ExtractTextPlugin(appName + '-[hash].css') : function() {},
-    isProd ? new webpack.optimize.UglifyJsPlugin() : function() {}
+    isProd ? new webpack.optimize.UglifyJsPlugin() : function() {},
+    isProd ? new webpack.optimize.OccurrenceOrderPlugin() : function() {}
   ],
   resolveLoader: {
     root: path.resolve(__dirname, 'node_modules')
