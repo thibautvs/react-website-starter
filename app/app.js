@@ -5,5 +5,5 @@ import Header from './components/Header';
 
 ReactDOM.render(
   <Header title='React Website Starter' />,
-  document.querySelector('#main')
+  document.querySelector('#root')
 );
