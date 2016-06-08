@@ -1,4 +1,4 @@
-import './theme/app.scss';
+import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './components/Header';

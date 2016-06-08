@@ -9,7 +9,7 @@ var envConfig         = require(envConfigPath)(appName);
 
 var commonConfig = {
   context: path.resolve(__dirname, 'app'),
-  entry: { javascript: './app.jsx' },
+  entry: { javascript: './App.jsx' },
   module: {
     loaders: [
       { test: /assets/,                 loader: 'file?name=[path][name].[ext]' },
