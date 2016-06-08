@@ -1,29 +1,105 @@
-var webpack           = require('webpack');
-var path              = require('path');
-var autoprefixer      = require('autoprefixer');
-var merge             = require('webpack-merge');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var appName           = 'react-website-starter';
-var envConfigPath     = path.join(__dirname, 'webpack.' + process.env.NODE_ENV + '.config.js');
-var envConfig         = require(envConfigPath)(appName);
+const appName           = 'react-website-starter';
+const env               = process.env.NODE_ENV;
+const webpack           = require('webpack');
+const path              = require('path');
+const merge             = require('webpack-merge');
+const autoprefixer      = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var commonConfig = {
+const commonConfig = {
   context: path.resolve(__dirname, 'app'),
-  entry: { javascript: './App.jsx' },
+  entry: {
+    javascript: './App.jsx'
+  },
   module: {
     loaders: [
-      { test: /assets/,                 loader: 'file?name=[path][name].[ext]' },
-      { test: require.resolve('react'), loader: 'expose?React' }
+      {
+        test: /assets/,
+        loader: 'file?name=[path][name].[ext]'
+      },
+      {
+        test: require.resolve('react'),
+        loader: 'expose?React'
+      }
     ]
   },
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
-  plugins: [
-    new HtmlWebpackPlugin({ template: './index.tmpl.html', favicon: './favicon.ico' }),
-    new webpack.DefinePlugin({ 'process.env': { 'NODE_ENV': JSON.stringify(process.env.NODE_ENV) } })
+  postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] })
   ],
-  resolve: { extensions: ['', '.js', '.jsx'] },
-  resolveLoader: { root: path.resolve(__dirname, 'node_modules') },
-  output: { path: path.resolve(__dirname, 'dist') }
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.tmpl.html',
+      favicon: './favicon.ico'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    })
+  ],
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  resolveLoader: {
+    root: path.resolve(__dirname, 'node_modules')
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist')
+  }
+};
+
+if (env === 'development') {
+  module.exports = merge(commonConfig, {
+    module: {
+      loaders: [
+        {
+          test: /\.scss$/,
+          loaders: ['style', 'css?sourceMap', 'sass?sourceMap', 'postcss']
+        },
+        {
+          test: /\.(jsx?)$/,
+          exclude: /node_modules/,
+          loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
+        }
+      ]
+    },
+    output: {
+      filename: appName + '.js'
+    },
+    devTool: 'eval-source-map',
+    devServer: {
+      port: 8000
+    }
+  });
 }
 
-module.exports = merge(commonConfig, envConfig);
+if (env === 'production') {
+  module.exports = merge(commonConfig, {
+    entry: {
+      vendor: ['react', 'react-dom']
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('style', 'css!sass!postcss')
+        },
+        {
+          test: /\.(jsx?)$/,
+          exclude: /node_modules/,
+          loader: 'babel?presets[]=es2015&presets[]=react'
+        }
+      ]
+    },
+    plugins: [
+      new ExtractTextPlugin(appName + '-[hash].css'),
+      new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js'),
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.OccurrenceOrderPlugin()
+    ],
+    output: {
+      filename: appName + '-[hash].js'
+    }
+  });
+}
