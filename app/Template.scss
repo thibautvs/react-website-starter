@@ -1,6 +1,6 @@
-@import '../theme';
+@import './theme';
 
-header {
+#main-header {
   font-family: helvetica, arial, sans-serif;
   font-size: 22px;
   color: $company-color;
@@ -18,4 +18,8 @@ header {
     top: 2px;
     left: 10px;
   }
+}
+
+section {
+  padding: 20px;
 }

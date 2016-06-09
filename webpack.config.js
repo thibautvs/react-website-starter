@@ -69,7 +69,8 @@ if (env === 'development') {
     },
     devTool: 'eval-source-map',
     devServer: {
-      port: 8000
+      port: 8000,
+      historyApiFallback: true
     }
   });
 }
@@ -77,7 +78,7 @@ if (env === 'development') {
 if (env === 'production') {
   module.exports = merge(commonConfig, {
     entry: {
-      vendor: ['react', 'react-dom']
+      vendor: ['react', 'react-dom', 'react-router']
     },
     module: {
       loaders: [
