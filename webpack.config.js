@@ -1,11 +1,13 @@
-const appName           = 'react-website-starter';
-const env               = process.env.NODE_ENV;
-const webpack           = require('webpack');
-const path              = require('path');
-const merge             = require('webpack-merge');
-const autoprefixer      = require('autoprefixer');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack            = require('webpack');
+const path               = require('path');
+const merge              = require('webpack-merge');
+const autoprefixer       = require('autoprefixer');
+const HtmlWebpackPlugin  = require('html-webpack-plugin');
+const ExtractTextPlugin  = require('extract-text-webpack-plugin');
+const BrowserSyncPlugin  = require('browser-sync-webpack-plugin');
+const appName            = 'react-website-starter';
+const env                = process.env.NODE_ENV;
+const devServerProxyPort = 8100;
 
 const commonConfig = {
   context: path.resolve(__dirname, 'app'),
@@ -64,13 +66,25 @@ if (env === 'development') {
         }
       ]
     },
-    output: {
-      filename: appName + '.js'
+    plugins: [
+      new BrowserSyncPlugin(
+        {
+          host: 'localhost',
+          port: 8000,
+          proxy: 'http://localhost:' + devServerProxyPort
+        },
+        {
+          reload: false
+        }
+      )
+    ],
+    devServer: {
+      port: devServerProxyPort,
+      historyApiFallback: true
     },
     devTool: 'eval-source-map',
-    devServer: {
-      port: 8000,
-      historyApiFallback: true
+    output: {
+      filename: appName + '.js'
     }
   });
 }
