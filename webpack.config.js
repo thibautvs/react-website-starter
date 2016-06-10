@@ -78,7 +78,7 @@ if (env === 'development') {
 if (env === 'production') {
   module.exports = merge(commonConfig, {
     entry: {
-      vendor: ['react', 'react-dom', 'react-router']
+      vendor: ['react', 'react-dom', 'react-router', 'react-ga']
     },
     module: {
       loaders: [
