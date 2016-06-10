@@ -1,5 +1,5 @@
 import React from 'react';
-//import './Home.scss';
+import './NotFound.scss';
 
 export default React.createClass({
   render() {
