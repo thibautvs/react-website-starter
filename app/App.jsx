@@ -1,7 +1,7 @@
 import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute, NotFoundRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import ga from 'react-ga';
 import Template from './Template';
 import Home from './pages/Home';
