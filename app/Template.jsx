@@ -7,7 +7,7 @@ export default React.createClass({
   render() {
     return (
       <div>
-        <header id='main-header'>
+        <header id="main-header">
           <img src={imgLogo} />
           <span>React Website Starter</span>
         </header>

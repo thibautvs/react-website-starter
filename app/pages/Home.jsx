@@ -4,7 +4,7 @@ import './Home.scss';
 export default React.createClass({
   render() {
     return (
-      <section id='home'>
+      <section id="home">
         <header>Home</header>
       </section>
     );
