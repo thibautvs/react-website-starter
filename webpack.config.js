@@ -5,6 +5,7 @@ const autoprefixer              = require('autoprefixer');
 const HtmlWebpackPlugin         = require('html-webpack-plugin');
 const ExtractTextPlugin         = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin         = require('browser-sync-webpack-plugin');
+const CleanWebpackPlugin        = require('clean-webpack-plugin');
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 const appName                   = 'react-website-starter';
 const env                       = process.env.NODE_ENV;
@@ -113,6 +114,7 @@ if (env === 'production') {
       ]
     },
     plugins: [
+      new CleanWebpackPlugin(commonConfig.output.path),
       new StaticSiteGeneratorPlugin('main', [
         '/',
         'about'
