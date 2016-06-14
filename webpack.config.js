@@ -115,15 +115,15 @@ if (env === 'production') {
     },
     plugins: [
       new CleanWebpackPlugin(commonConfig.output.path),
-      new StaticSiteGeneratorPlugin('main', [
-        '/',
-        'about'
-      ], {
-        appName: appName
-      }),
+      new StaticSiteGeneratorPlugin(
+        'main',
+        ['/', 'about'],
+        { appName: appName }
+      ),
       new ExtractTextPlugin(appName + '-[hash].css'),
       new webpack.optimize.UglifyJsPlugin(),
-      new webpack.optimize.OccurrenceOrderPlugin()
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new webpack.NoErrorsPlugin()
     ],
     output: {
       filename: appName + '-[hash].js',
