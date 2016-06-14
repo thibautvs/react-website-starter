@@ -121,7 +121,7 @@ if (env === 'production') {
         { appName: appName }
       ),
       new ExtractTextPlugin(appName + '-[hash].css'),
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({ output: { comments: false } }),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.NoErrorsPlugin()
     ],
