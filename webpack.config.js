@@ -1,24 +1,33 @@
-const webpack            = require('webpack');
-const path               = require('path');
-const merge              = require('webpack-merge');
-const autoprefixer       = require('autoprefixer');
-const HtmlWebpackPlugin  = require('html-webpack-plugin');
-const ExtractTextPlugin  = require('extract-text-webpack-plugin');
-const BrowserSyncPlugin  = require('browser-sync-webpack-plugin');
-const appName            = 'react-website-starter';
-const env                = process.env.NODE_ENV;
-const devServerProxyPort = 8100;
+const webpack                   = require('webpack');
+const path                      = require('path');
+const merge                     = require('webpack-merge');
+const autoprefixer              = require('autoprefixer');
+const HtmlWebpackPlugin         = require('html-webpack-plugin');
+const ExtractTextPlugin         = require('extract-text-webpack-plugin');
+const BrowserSyncPlugin         = require('browser-sync-webpack-plugin');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const appName                   = 'react-website-starter';
+const env                       = process.env.NODE_ENV;
+const devServerProxyPort        = 8100;
 
 const commonConfig = {
   context: path.resolve(__dirname, 'app'),
   entry: {
-    javascript: './App.jsx'
+    'main': './App.jsx'
   },
   module: {
     loaders: [
       {
         test: /assets/,
         loader: 'file?name=[path][name].[ext]'
+      },
+      {
+        test: /\.ico$/,
+        loader: 'file?name=[name].[ext]'
+      },
+      {
+        test: /\.ejs$/,
+        loader: 'ejs'
       },
       {
         test: require.resolve('react'),
@@ -30,10 +39,6 @@ const commonConfig = {
     autoprefixer({ browsers: ['last 2 versions'] })
   ],
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.tmpl.html',
-      favicon: './favicon.ico'
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(env)
@@ -67,6 +72,9 @@ if (env === 'development') {
       ]
     },
     plugins: [
+      new HtmlWebpackPlugin({
+        template: './index.html.ejs'
+      }),
       new BrowserSyncPlugin(
         {
           host: 'localhost',
@@ -91,9 +99,6 @@ if (env === 'development') {
 
 if (env === 'production') {
   module.exports = merge(commonConfig, {
-    entry: {
-      vendor: ['react', 'react-dom', 'react-router', 'react-ga']
-    },
     module: {
       loaders: [
         {
@@ -108,13 +113,19 @@ if (env === 'production') {
       ]
     },
     plugins: [
+      new StaticSiteGeneratorPlugin('main', [
+        '/',
+        'about'
+      ], {
+        appName: appName
+      }),
       new ExtractTextPlugin(appName + '-[hash].css'),
-      new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor-[hash].js'),
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.OccurrenceOrderPlugin()
     ],
     output: {
-      filename: appName + '-[hash].js'
+      filename: appName + '-[hash].js',
+      libraryTarget: 'umd'
     }
   });
 }

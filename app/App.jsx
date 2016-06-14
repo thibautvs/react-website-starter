@@ -1,25 +1,30 @@
 import './App.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import ga from 'react-ga';
-import Template from './Template';
-import Home from './pages/Home';
-import About from './pages/About';
-import NotFound from './pages/NotFound';
+import ReactDOMServer from 'react-dom/server';
+import { Router, RoutingContext, match, browserHistory, createMemoryHistory } from 'react-router';
+import routes from './Routes';
+import favIcon from './favicon.ico';
+import indexTemplate from './index.html.ejs';
 
-ga.initialize('UA-000000-01');
-
-function logPageView() {
-  ga.pageview(window.location.pathname);
+// Development render
+if (process.env.NODE_ENV === 'development') {
+  ReactDOM.render(
+    <Router history={browserHistory} routes={routes} />,
+    document.querySelector('#root')
+  );
 }
 
-ReactDOM.render((
-  <Router history={browserHistory} onUpdate={logPageView}>
-    <Route path="/" component={Template}>
-      <IndexRoute component={Home} />
-      <Route path="about" component={About} />
-      <Route path="*" component={NotFound} />
-    </Route>
-  </Router>
-), document.querySelector('#root'));
+// Production (static) render
+export default (locals, callback) => {
+  const history = createMemoryHistory();
+  const location = history.createLocation(locals.path);
+
+  match({ routes, location }, (err, redirectLocation, renderProps) => {
+    callback(null, indexTemplate({
+      html: ReactDOMServer.renderToString(<RoutingContext {...renderProps} />),
+      bundleFileName: locals.appName + '-' + locals.webpackStats.hash,
+      isProd: true
+    }));
+  });
+};

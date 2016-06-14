@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>React Website Starter</title>
+    <% if (typeof isProd !== 'undefined') { %><link rel="stylesheet" href="<%= bundleFileName %>.css" /><% } %>
+  </head>
+  <body>
+    <% if (typeof isProd !== 'undefined') { %>
+      <%= html %>
+      <script type="text/javascript" src="<%= bundleFileName %>.js"></script>
+    <% } else { %><div id="root"></div><% } %>
+  </body>
+</html>
