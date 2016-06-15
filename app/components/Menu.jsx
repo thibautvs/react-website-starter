@@ -1,5 +1,6 @@
-import React from 'react';
-import { IndexLink, Link } from 'react-router';
+import React     from 'react';
+import Link      from 'react-router/lib/Link';
+import IndexLink from 'react-router/lib/IndexLink';
 import './Menu.scss';
 
 export default React.createClass({
