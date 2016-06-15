@@ -56,11 +56,11 @@ as files that are not required are not bundled
 (see [react-webapp-starter][react-webapp-starter]) and mobile apps. _Learn once, write anywhere_.
 * Isomorphic website for best UX (1st page load speed) and SEO (static pre-render).
 * Static pre-render so no backend required. Can be hosted on Amazon S3, NGINX, shared hosting etc.
-* Webpack as it's pretty much the de facto choice in the React community and much more powerful out of the box than Browserify.
+* Webpack as it's the de facto choice for React projects and much more powerful out of the box than Browserify.
 * ES2015 via Babel. No brainer.
 * Sass as it's still the best CSS preprocessor and simpler than a custom PostCSS configuration.
-* Only essential libraries for speed optimization. So jQuery, Lodash, Moment etc were left out and can be installed later when necessary.
-* No app/vendor bundle split, which leads to fewer HTTP requests as static websites usually have little custom JS and few dependencies.
+* Only essential libraries for speed optimization. jQuery, Lodash, Moment etc can be installed later on when necessary.
+* No app/vendor bundle split, leading to fewer HTTP requests as static websites usually only have a few dependencies.
 * To understand the project design more in depth, have a look at the [commits history][commits-history] which contains clear, small commits related
 to a single feature at a time.
 
