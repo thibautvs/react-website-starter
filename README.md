@@ -49,6 +49,7 @@ To generate the _production_ distributable package, type `npm run-script dist`.
 * JSX components with related Sass file are placed alongside for easier dev/maintenance and dead code elimination
 as files that are not required are not bundled
 * Single quotes in JS and Sass, double quotes for HTML in JSX files (React community convention)
+* No semicolons in JS(X) files (see design decisions)
 
 ## Design decisions
 
@@ -61,6 +62,7 @@ as files that are not required are not bundled
 * Sass as it's still the best CSS preprocessor and simpler than a custom PostCSS configuration.
 * Only essential libraries for speed optimization. jQuery, Lodash, Moment etc can be installed later on when necessary.
 * No app/vendor bundle split, leading to fewer HTTP requests as static websites usually only have a few dependencies.
+* No semicolons in JavaScript files for nicer/simpler looking code. Popular convention in modern projects such as [Redux][redux]. Can be easily restored/removed via [Semi][semi].
 * To understand the project design more in depth, have a look at the [commits history][commits-history] which contains clear, small commits related
 to a single feature at a time.
 
@@ -74,3 +76,5 @@ which is imported once at application startup.
 
 [react-webapp-starter]: https://github.com/thibautvs/react-webapp-starter
 [commits-history]: https://github.com/thibautvs/react-website-starter/commits/master
+[redux]: https://github.com/reactjs/redux
+[semi]: https://github.com/yyx990803/semi

@@ -1,15 +1,15 @@
-const webpack                   = require('webpack');
-const path                      = require('path');
-const merge                     = require('webpack-merge');
-const autoprefixer              = require('autoprefixer');
-const HtmlWebpackPlugin         = require('html-webpack-plugin');
-const ExtractTextPlugin         = require('extract-text-webpack-plugin');
-const BrowserSyncPlugin         = require('browser-sync-webpack-plugin');
-const CleanWebpackPlugin        = require('clean-webpack-plugin');
-const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
-const appName                   = 'react-website-starter';
-const env                       = process.env.NODE_ENV;
-const devServerProxyPort        = 8100;
+const webpack                   = require('webpack')
+const path                      = require('path')
+const merge                     = require('webpack-merge')
+const autoprefixer              = require('autoprefixer')
+const HtmlWebpackPlugin         = require('html-webpack-plugin')
+const ExtractTextPlugin         = require('extract-text-webpack-plugin')
+const BrowserSyncPlugin         = require('browser-sync-webpack-plugin')
+const CleanWebpackPlugin        = require('clean-webpack-plugin')
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin')
+const appName                   = 'react-website-starter'
+const env                       = process.env.NODE_ENV
+const devServerProxyPort        = 8100
 
 const commonConfig = {
   context: path.resolve(__dirname, 'app'),
@@ -55,7 +55,7 @@ const commonConfig = {
   output: {
     path: path.resolve(__dirname, 'dist')
   }
-};
+}
 
 if (env === 'development') {
   module.exports = merge(commonConfig, {
@@ -95,7 +95,7 @@ if (env === 'development') {
     output: {
       filename: appName + '.js'
     }
-  });
+  })
 }
 
 if (env === 'production') {
@@ -129,5 +129,5 @@ if (env === 'production') {
       filename: appName + '-[hash].js',
       libraryTarget: 'umd'
     }
-  });
+  })
 }
