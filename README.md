@@ -45,10 +45,11 @@ To generate the _production_ distributable package, type `npm run-script dist`.
 
 ## Conventions
 
-* Naming convention for JSX components and their associated Sass file is PascalCase (React community convention)
-* JSX components with related Sass file are placed alongside for easier dev/maintenance and dead code elimination
+* JSX and SCSS filenames in PascalCase (React community convention)
+* JS filenames in camelCase
+* JSX components with related SCSS file are placed alongside for easier dev/maintenance and dead code elimination
 as files that are not required are not bundled
-* Single quotes in JS and Sass, double quotes for HTML in JSX files (React community convention)
+* Single quotes in JS and SCSS, double quotes for HTML in JSX files (React community convention)
 * No semicolons in JS(X) files (see design decisions)
 
 ## Design decisions
@@ -70,7 +71,7 @@ to a single feature at a time.
 
 * When adding a new page, update the routes array of `StaticSiteGeneratorPlugin` in `webpack.config.js`.
 * In `app/App.jsx`, leave `import './App.scss'` at the top as base styles (such as Normalize.css) have to be imported first.
-* Don't put global styles in `app/theme.scss`, which is meant to be imported by components. Global styles go in `app/App.scss`
+* Don't put global styles in `app/Theme.scss`, which is meant to be imported by components. Global styles go in `app/App.scss`
 which is imported once at application startup.
 * If the development web server port (8000) is already used by another process on your machine, you can change the configuration in `webpack.config.js`.
 
