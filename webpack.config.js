@@ -68,7 +68,7 @@ if (env === 'development') {
         {
           test: /\.(jsx?)$/,
           exclude: /node_modules/,
-          loaders: ['react-hot', 'babel?presets[]=es2015&presets[]=react']
+          loaders: ['react-hot', 'babel']
         }
       ]
     },
@@ -109,7 +109,7 @@ if (env === 'production') {
         {
           test: /\.(jsx?)$/,
           exclude: /node_modules/,
-          loader: 'babel?presets[]=es2015&presets[]=react'
+          loader: 'babel'
         }
       ]
     },
