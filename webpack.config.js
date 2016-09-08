@@ -53,7 +53,7 @@ const commonConfig = {
     root: path.resolve(__dirname, 'node_modules')
   },
   output: {
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'build')
   }
 }
 
