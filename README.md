@@ -2,7 +2,7 @@
 
 Isomorphic React static website starter. Optimized for speed and SEO.
 
-Check also [react-webapp-starter][react-webapp-starter].
+Check also [React Web App Starter][react-webapp-starter].
 
 ## Technologies
 * React
@@ -41,7 +41,8 @@ To launch the project in _development_ mode, type `npm start`. To test on multip
 use the _external_ IP address in the console (ex: `External: http://172.20.206.64:8000/`).
 This also works with any other device on the same network (smartphones, tablets, etc).
 
-To generate the _production_ package, type `npm run build`.
+To generate the _production_ package, type `npm run build`. To test the package locally,
+type `npm run serve`.
 
 ## Conventions
 
