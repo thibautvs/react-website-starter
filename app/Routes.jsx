@@ -1,9 +1,9 @@
-import Route      from 'react-router/lib/Route'
+import Route from 'react-router/lib/Route'
 import IndexRoute from 'react-router/lib/IndexRoute'
-import Template   from './Template'
-import Home       from './pages/Home'
-import About      from './pages/About'
-import NotFound   from './pages/NotFound'
+import Template from './Template'
+import Home from './pages/Home'
+import About from './pages/About'
+import NotFound from './pages/NotFound'
 
 export default (
   <Route path="/" component={Template}>
