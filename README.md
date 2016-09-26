@@ -28,7 +28,8 @@ Check also [React Web App Starter][react-webapp-starter].
 
 ## Setup
 
-`Fork` and/or `clone` this repository. After `npm install`, perform the following:
+`Fork` and/or `clone` this repository. After executing `npm install` and
+`npm install http-server -g`, perform the following:
 
 * In `webpack.config.js`, replace the `appName` value by yours
 * In `app/index.html.ejs`, replace the `<title>` value by yours
