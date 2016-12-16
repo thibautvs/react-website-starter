@@ -56,13 +56,13 @@ as files that are not required are not bundled
 ## Design decisions
 
 * React as the main technology as it can be used for many purposes: websites, web apps
-(see [react-webapp-starter][react-webapp-starter]) and mobile apps. _Learn once, write anywhere_.
+(see [React Web App Starter][react-webapp-starter]) and mobile apps. _Learn once, write anywhere_.
 * Isomorphic website for best UX (1st page load speed) and SEO (static pre-render).
 * Static pre-render so no backend required. Can be hosted on Amazon S3, NGINX, shared hosting etc.
 * Webpack as it's the de facto choice for React projects and much more powerful out of the box than Browserify.
 * ES2015 via Babel. No brainer.
 * PostCSS as it's the most flexible and innovative approach.
-* Only essential libraries for speed optimization. jQuery, Lodash, Moment etc can be installed later on when necessary.
+* Only essential libraries for speed optimization. Lodash, Moment etc can be installed later on when necessary.
 * No app/vendor bundle split, leading to fewer HTTP requests as static websites usually only have a few dependencies.
 * No semicolons in JavaScript files for nicer/simpler looking code. Popular convention in modern projects such as [Redux][redux]. Can be easily restored/removed via [Semi][semi].
 * To understand the project design more in depth, have a look at the [commits history][commits-history] which contains clear, small commits related
