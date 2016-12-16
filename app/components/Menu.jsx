@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'react-router/lib/Link'
 import IndexLink from 'react-router/lib/IndexLink'
-import './Menu.scss'
+import './Menu.pcss'
 
 export default () => (
   <nav id="main-menu">

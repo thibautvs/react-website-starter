@@ -1,5 +1,5 @@
 import React from 'react'
-import './NotFound.scss'
+import './NotFound.pcss'
 
 export default () => (
   <section id="not-found">

@@ -1,7 +1,12 @@
 const webpack = require('webpack')
 const path = require('path')
 const merge = require('webpack-merge')
-const autoprefixer = require('autoprefixer')
+const postcssSimpleVars = require('postcss-simple-vars')
+const postcssNested = require('postcss-nested')
+const postcssMixins = require('postcss-mixins')
+const postcssImport = require('postcss-import')
+const postcssExtend = require('postcss-extend')
+const postcssCssNext = require('postcss-cssnext')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
@@ -37,7 +42,12 @@ const commonConfig = {
     ]
   },
   postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })
+    postcssImport(),
+    postcssMixins(),
+    postcssSimpleVars(),
+    postcssNested(),
+    postcssExtend(),
+    postcssCssNext({ browsers: ['last 2 versions'] })
   ],
   plugins: [
     new webpack.DefinePlugin({
@@ -62,8 +72,8 @@ if (env === 'development') {
     module: {
       loaders: [
         {
-          test: /\.scss$/,
-          loaders: ['style', 'css?sourceMap', 'sass?sourceMap', 'postcss']
+          test: /\.pcss$/,
+          loaders: ['style', 'css?sourceMap', 'postcss?sourceMap=inline']
         },
         {
           test: /\.(jsx?)$/,
@@ -103,8 +113,8 @@ if (env === 'production') {
     module: {
       loaders: [
         {
-          test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('style', 'css!sass!postcss')
+          test: /\.pcss$/,
+          loader: ExtractTextPlugin.extract('style', 'css!postcss')
         },
         {
           test: /\.(jsx?)$/,

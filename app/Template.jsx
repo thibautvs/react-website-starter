@@ -2,7 +2,7 @@ import React from 'react'
 import ga from 'react-ga'
 import imgLogo from './assets/images/logo.svg'
 import Menu from './components/Menu'
-import './Template.scss'
+import './Template.pcss'
 
 export default React.createClass({
   componentDidMount() {

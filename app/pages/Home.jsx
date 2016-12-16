@@ -1,5 +1,5 @@
 import React from 'react'
-import './Home.scss'
+import './Home.pcss'
 
 export default () => (
   <section id="home">

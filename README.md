@@ -8,7 +8,7 @@ Check also [React Web App Starter][react-webapp-starter].
 * React
 * Webpack
 * Babel
-* Sass
+* PostCSS
 * Browsersync
 
 ## Features
@@ -17,9 +17,8 @@ Check also [React Web App Starter][react-webapp-starter].
 * React + React Router setup
 * Webpack dev server + Browsersync
 * Hot Module Replacement
-* Sass compiler
+* PostCSS compiler + cssnext
 * Normalize.css
-* Autoprefixer via PostCSS
 * Static website generation (isomorphic React)
 * Assets minification + bundling
 * Google Universal Analytics
@@ -47,11 +46,11 @@ type `npm run serve`.
 
 ## Conventions
 
-* JSX and SCSS filenames in PascalCase (React community convention)
+* JSX and PCSS filenames in PascalCase (React community convention)
 * JS filenames in camelCase
-* JSX components with related SCSS file are placed alongside for easier dev/maintenance and dead code elimination
+* JSX components with related PCSS file are colocated for easier dev/maintenance and dead code elimination
 as files that are not required are not bundled
-* Single quotes in JS and SCSS, double quotes for HTML in JSX files (React community convention)
+* Single quotes in JS and PCSS, double quotes for HTML in JSX files (React community convention)
 * No semicolons in JS(X) files (see design decisions)
 
 ## Design decisions
@@ -62,7 +61,7 @@ as files that are not required are not bundled
 * Static pre-render so no backend required. Can be hosted on Amazon S3, NGINX, shared hosting etc.
 * Webpack as it's the de facto choice for React projects and much more powerful out of the box than Browserify.
 * ES2015 via Babel. No brainer.
-* Sass as it's still the best CSS preprocessor and simpler than a custom PostCSS configuration.
+* PostCSS as it's the most flexible and innovative approach.
 * Only essential libraries for speed optimization. jQuery, Lodash, Moment etc can be installed later on when necessary.
 * No app/vendor bundle split, leading to fewer HTTP requests as static websites usually only have a few dependencies.
 * No semicolons in JavaScript files for nicer/simpler looking code. Popular convention in modern projects such as [Redux][redux]. Can be easily restored/removed via [Semi][semi].
@@ -72,8 +71,8 @@ to a single feature at a time.
 ## Remarks
 
 * When adding a new page, update the routes array of `StaticSiteGeneratorPlugin` in `webpack.config.js`.
-* In `app/App.jsx`, leave `import './App.scss'` at the top as base styles (such as Normalize.css) have to be imported first.
-* Don't put global styles in `app/Theme.scss`, which is meant to be imported by components. Global styles go in `app/App.scss`
+* In `app/App.jsx`, leave `import './App.pcss'` at the top as base styles (such as Normalize.css) have to be imported first.
+* Don't put global styles in `app/Theme.pcss`, which is meant to be imported by components. Global styles go in `app/App.pcss`
 which is imported once at application startup.
 * If the development web server port (8000) is already used by another process on your machine, you can change the configuration in `webpack.config.js`.
 
